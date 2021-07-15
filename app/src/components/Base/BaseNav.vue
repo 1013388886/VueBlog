@@ -1,36 +1,28 @@
 <template>
-  <div class="baseNav" @click="openInput">
-    <el-popover
-      placement="top"
-      width="200"
-      trigger="hover"
-      :disabled="!isLogin"
-    >
-      <Avatar />
-      <el-avatar
-        slot="reference"
-        fit="cover"
-        :src="ImgUrl"
-        :size="50"
-        shape="square"
-        style="width: 100%"
-      >
-      </el-avatar>
-    </el-popover>
+  <div class="baseNav">
+    <el-avatar
+      slot="reference"
+      fit="cover"
+      :src="ImgUrl"
+      :size="50"
+      shape="square"
+      style="width: 100%"
+      @click.native.stop="openInput"
+    />
+    <Userinfo ref="userinfo"  />
   </div>
 </template>
 
 <script>
-import Avatar from "@/views/Avatar.vue";
 // "https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"
+import Userinfo from "@/components/Head/userinfo.vue";
 export default {
   name: "BaseNav",
   data() {
-    return {};
+    return {
+    };
   },
-  components: {
-    Avatar,
-  },
+  components: { Userinfo },
   computed: {
     ImgUrl() {
       return (
@@ -44,8 +36,12 @@ export default {
   methods: {
     openInput() {
       let isLogin = this.$store.state.isLogin;
-      if (isLogin) return;
-      this.$bus.$emit("openInput", 1);
+      if (!isLogin) {
+        this.$bus.$emit("openInput", 1);
+      }
+      if (isLogin) {
+        this.$refs.userinfo.drawer = true
+      }
     },
   },
 };
@@ -60,6 +56,6 @@ export default {
   text-align: center;
   color: #fff;
   cursor: pointer;
-     border-radius: 50%;
+  border-radius: 50%;
 }
 </style>

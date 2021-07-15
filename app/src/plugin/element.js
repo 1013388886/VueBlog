@@ -28,7 +28,10 @@ import {
     Loading,
     InfiniteScroll,
     Autocomplete,
-    PageHeader
+    PageHeader,
+    Drawer,
+    Timeline,
+    TimelineItem
 } from "element-ui";
 
 Vue.use(Image),
@@ -57,6 +60,9 @@ Vue.use(CheckboxGroup)
 Vue.use(CheckboxButton)
 Vue.use(Autocomplete)
 Vue.use(PageHeader)
+Vue.use(Drawer)
+Vue.use(Timeline)
+Vue.use(TimelineItem)
 Vue.use(InfiniteScroll)
 Vue.use(Loading.directive);
 

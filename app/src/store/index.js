@@ -37,7 +37,9 @@ export default new Vuex.Store({
       }
     },
     SET_USERINFO(state, data) {
-      state.userinfo = data.result  
+      let result = data.result  
+      result.articleID = result.articleID.reverse()
+      state.userinfo = result
     },
     OUT_LOGIN(state){
       state.isLogin = false

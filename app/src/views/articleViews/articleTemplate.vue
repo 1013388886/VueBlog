@@ -54,11 +54,12 @@ export default {
   },
   methods: {
     getArticleID() {
-      let id = this.$route.query;
-      this.$http("getArticleID", id)
+      let id = this.$route.query.id;
+      id = JSON.stringify([id]).trim()
+      this.$http("getArticleID", {id})
         .then((result) => {
           if (result.states === "200") {
-            this.articleInfo = result.info;
+            this.articleInfo = result.info[0];
           }
         })
         .catch((err) => {
